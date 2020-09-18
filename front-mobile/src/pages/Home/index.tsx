@@ -1,41 +1,44 @@
 import React from 'react';
-import { FontAwesome5 as Icon} from '@expo/vector-icons'
+import { FontAwesome5 as Icon} from '@expo/vector-icons';
 import { Text, StyleSheet, View, Image, Alert } from 'react-native';
-import { RectButton, ScrollView } from 'react-native-gesture-handler'
+import { RectButton, ScrollView } from 'react-native-gesture-handler';
+import Header from '../../components/Header';
+import { useNavigation } from '@react-navigation/native'
 
 const Home = () => {
+  const navitagion = useNavigation();
 
-    const handlePress = () => {
-        Alert.alert('Você clicou no botão')
-    }
+  const handlePress = () => {
+    navitagion.navigate('CreateRecord');
+  }
 
-    return (
-
-       
-        <ScrollView>
-            <View style={styles.container}>
-                <Image 
-                    style={styles.gamerImage}
-                    source={require('../../assets/gamer.png')}
-                />
-                <Text style={styles.title}>Vote agora!</Text>
-                <Text style={styles.subTitle}>Nos diga qual é o seu jogo favorito!</Text>
-            </View>
-            <View style={styles.footer}>
-                <RectButton style={styles.button} onPress={handlePress}>
-                    <Text  style={styles.buttonText}>
-                        COLETAR DADOS
-                    </Text>
-                    <View style={styles.buttonIcon}>
-                        <Text>
-                            <Icon name="chevron-right" color="#FFF" size={25}></Icon>
-                        </Text>
-                    </View>
-                </RectButton>
-            </View>
-        </ScrollView>
-        
-    );
+  return (
+    <>
+      <Header />
+      <ScrollView>
+          <View style={styles.container}>
+              <Image 
+                  style={styles.gamerImage}
+                  source={require('../../assets/gamer.png')}
+              />
+              <Text style={styles.title}>Vote agora!</Text>
+              <Text style={styles.subTitle}>Nos diga qual é o seu jogo favorito!</Text>
+          </View>
+          <View style={styles.footer}>
+              <RectButton style={styles.button} onPress={handlePress}>
+                  <Text  style={styles.buttonText}>
+                      COLETAR DADOS
+                  </Text>
+                  <View style={styles.buttonIcon}>
+                      <Text>
+                          <Icon name="chevron-right" color="#FFF" size={25}></Icon>
+                      </Text>
+                  </View>
+              </RectButton>
+          </View>
+      </ScrollView>
+    </>
+  );
 }
 
 const styles = StyleSheet.create({
